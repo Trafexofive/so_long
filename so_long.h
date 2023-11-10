@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <mlx.h>
+#include "./gnl/get_next_line.h"
 
 typedef struct point
 {
@@ -21,9 +22,11 @@ typedef struct player
 
 typedef struct map_count
 {
-	int	player;
-	int	exit;
-	int collectibles;
-	int wall;
-	int floor;
+	static int	player;
+	static int	exit;
+	static int collectibles;
+	static int wall;
+	static int floor;
 }t_map_count;
+
+#endif

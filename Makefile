@@ -1,14 +1,26 @@
 
 
+NAME	:= Game
+CFLAGS	:= -Wextra -Wall -Werror -Imlx
 
-$(CFLAGS) := -Wall -Wextra -Werror 
+HEADERS	:= -I ./include -I ./gnl/get_next_line.h
+SRCS	:= ./main.c ./parse.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
+OBJS	:= ${SRCS:.c=.o}
 
-$(FILES) := so_long.c
-$(OBJ) := $(FILES=.c=.o)
-$(NAME) := so_long
+all: $(NAME)
 
-all : $(NAME)
+%.o: %.c
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
+$(NAME): $(OBJS)
+	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
-%.o: %.c 
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+clean:
+	@rm -rf $(OBJS)
+
+fclean: clean
+	@rm -rf $(NAME)
+
+re: clean all
+
+.PHONY: all, clean, fclean, re
