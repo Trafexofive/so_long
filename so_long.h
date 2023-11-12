@@ -7,7 +7,15 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <mlx.h>
-#include "./gnl/get_next_line.h"
+# include <stdbool.h>
+#include "./libft/libft.h"
+
+#define true 1
+# define false 0
+# define ERROR_1 "Map must be in .ber format.\n"
+# define ERROR_2 "Failed to load map.\n"
+# define ERROR_3 "Failed to provide map.\n"
+# define ERROR_4 ""
 
 typedef struct point
 {
@@ -15,18 +23,31 @@ typedef struct point
 	int y;
 }t_point;
 
-typedef struct player
+typedef struct s_counter
 {
-	t_point	p;
-}t_player;
+	unsigned int	player;
+	t_point			p_pos;
+	unsigned int	exit;
+	unsigned int 	collectibles; // to keep
+}t_counter;
 
-typedef struct map_count
+// typedef struct elements 
+// {
+// 	int	player;
+// 	int	exit;
+// 	int collectibles;
+// 	int wall;
+// 	int floor;
+// }t_map_elements;
+
+typedef struct game_info
 {
-	static int	player;
-	static int	exit;
-	static int collectibles;
-	static int wall;
-	static int floor;
-}t_map_count;
+	char			**map;
+	t_point			p_pos;
+	unsigned int 	c_count;
+	int 	width;
+	int 	length;
+
+}		t_game_info;
 
 #endif

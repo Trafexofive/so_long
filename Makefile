@@ -1,26 +1,37 @@
 
 
 NAME	:= Game
-CFLAGS	:= -Wextra -Wall -Werror -Imlx
 
-HEADERS	:= -I ./include -I ./gnl/get_next_line.h
-SRCS	:= ./main.c ./parse.c ./gnl/get_next_line.c ./gnl/get_next_line_utils.c
+CFLAGS	:= -Wextra -Wall  -Imlx
+#-Werror
+SRCS	:= main.c parse.c 
+
+LIBFT_A := libft/libft.a
+
+HEADERS := so_long.h libft/libft.h libft/gnl/get_next_line.h
+
 OBJS	:= ${SRCS:.c=.o}
 
 all: $(NAME)
+	 ./Game
+lib : 
+	make -C ./libft
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
+$(NAME): $(OBJS) 
+	$(CC) $(OBJS) $(LIBFT_A) -o $(NAME)
 
-$(NAME): $(OBJS)
-	@$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
+%.o: %.c $(HEADERS) | lib 
+	$(CC) $(CFLAGS) -c $< -o $@ 
+
 
 clean:
-	@rm -rf $(OBJS)
+	make clean -C ./libft
+	rm -rf $(OBJS)
 
 fclean: clean
-	@rm -rf $(NAME)
+	make fclean -C ./libft
+	rm -rf $(NAME)
 
-re: clean all
+re: fclean all
 
-.PHONY: all, clean, fclean, re
+.PHONY: all, lib, clean, fclean, re
