@@ -1,39 +1,35 @@
 #include "so_long.h"
 
-void	draw_map(void *mlx, void *mlx_win, t_game_info *game, t_img_data *textures)
+void	draw_map(t_game_info *game, t_img_data *textures)
 {
 	int	x;
 	int	y;
 	int i;
 	int	j;
-	char	**map;
 
 	i = TILE;
-	j = TILE;
+	j = TILE; // optimizable
 	x = 0;
 	y = 0;
-	map = NULL;
-	map = game->map;
 
-	while (map[x])
+
+	while (game->map[x])
 	{
-		while (map[x][y])
+		while (game->map[x][y])
 		{
-			if (map[x][y] == '1')
-				mlx_put_image_to_window(mlx, mlx_win, textures->wall_img, j, i);
-			if (map[x][y] == '0')
-				mlx_put_image_to_window(mlx, mlx_win, textures->floor_img, j, i);
-			if (map[x][y] == 'P')
-				mlx_put_image_to_window(mlx, mlx_win, textures->floor_img, j, i);
-			if (map[x][y] == 'E')
+			if (game->map[x][y] == '1')
+				mlx_put_image_to_window(game->mlx, game->mlx_win, textures->wall_img, j, i);
+			if (game->map[x][y] == '0' || game->map[x][y] == 'P')
+				mlx_put_image_to_window(game->mlx, game->mlx_win, textures->floor_img, j, i);
+			if (game->map[x][y] == 'E')
 			{
-				mlx_put_image_to_window(mlx, mlx_win, textures->floor_img, j, i);
-				mlx_put_image_to_window(mlx, mlx_win, textures->exit_img, j, i);
+				mlx_put_image_to_window(game->mlx, game->mlx_win, textures->floor_img, j, i);
+				mlx_put_image_to_window(game->mlx, game->mlx_win, textures->exit_img, j, i);
 			}
-			if (map[x][y] == 'C')
+			if (game->map[x][y] == 'C')
 			{
-				mlx_put_image_to_window(mlx, mlx_win, textures->floor_img, j, i);
-				mlx_put_image_to_window(mlx, mlx_win, textures->coin_img, j, i);
+				mlx_put_image_to_window(game->mlx, game->mlx_win, textures->floor_img, j, i);
+				mlx_put_image_to_window(game->mlx, game->mlx_win, textures->coin_img, j, i);
 			}
 			j = j + TILE;
 			y++;
@@ -63,8 +59,7 @@ void	*load_textures(t_img_data *textures, void *mlx)
 
 int main(int ac, char **av)
 {
-	void		*mlx;
-	void		*mlx_win;
+
 
 
 	t_game_info	*game;
@@ -78,14 +73,14 @@ int main(int ac, char **av)
 		ft_errors_exit(ERROR_6);
 	if (ac == 2)
 		game = so_long(av);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "so_long");
-	load_textures(textures, mlx);
-	draw_map(mlx, mlx_win, game, textures);
+	game->mlx = mlx_init();
+	game->mlx_win = mlx_new_window(game->mlx, 1920, 1080, "so_long");
+	load_textures(textures, game->mlx);
+	draw_map(game, textures);
 
 	
 
 	// mlx_hook(vars.win, ON_DESTROY, 0, close, &vars);
-	mlx_loop(mlx);
+	mlx_loop(game->mlx);
 	free(textures);
 }

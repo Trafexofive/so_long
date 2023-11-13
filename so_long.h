@@ -39,7 +39,8 @@ typedef struct s_counter
 	unsigned int	player;
 	t_point			p_pos;
 	unsigned int	exit;
-	unsigned int 	collectibles; // to keep
+	unsigned int 	collectibles;
+	// to keep
 }t_counter;
 
 typedef struct s_img_data
@@ -51,6 +52,7 @@ typedef struct s_img_data
 	int		tile_width; // divide the res / 64
 	int		tile_lenght;
 }t_img_data;
+
 
 // typedef struct elements 
 // {
@@ -70,6 +72,8 @@ typedef struct game_info
 	unsigned int 	c_count;
 	int 	width;
 	int 	length;
+	void	*mlx;
+	void	*mlx_win;
 
 }		t_game_info;
 
