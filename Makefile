@@ -4,7 +4,7 @@ NAME	:= so_long
 
 CFLAGS	:= -Wextra -Wall  -Imlx
 #-Werror
-SRCS	:= main.c parse.c 
+SRCS	:= main.c parse.c parse_map_utils.c error_utils.c
 
 LIBFT_A := libft/libft.a
 
@@ -13,7 +13,7 @@ HEADERS := so_long.h libft/libft.h libft/gnl/get_next_line.h
 OBJS	:= ${SRCS:.c=.o}
 
 all: $(NAME)
-	 ./so_long
+	 ./so_long maps/map1.ber
 lib :
 	make -C ./libft
 
