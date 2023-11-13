@@ -12,6 +12,10 @@
 # define true 1
 # define false 0
 # define TILE 64
+# define floor_path "./textures/floor.xpm"
+# define wall_path "./textures/wall.xpm"
+# define exit_path "./textures/exit.xpm"
+# define coin_path "./textures/coin.xpm"
 # define ERROR_1 "Invalid Map : .ber format required\n"
 # define ERROR_2 "Failed to read map.\n"
 # define ERROR_3 "Failed to provide map.\n"
@@ -37,6 +41,14 @@ typedef struct s_counter
 	unsigned int	exit;
 	unsigned int 	collectibles; // to keep
 }t_counter;
+
+typedef struct s_img_data
+{
+	void	*floor_img;
+	void	*wall_img;
+	void	*coin_img;
+	void	*exit_img;
+}t_img_data;
 
 // typedef struct elements 
 // {

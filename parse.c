@@ -8,7 +8,7 @@ bool	valid_map(char *buffered_map, t_game_info *game)
 	char	**map;
 	t_counter elemts;
 
-	bzero(&elemts, sizeof(t_counter));
+	ft_bzero(&elemts, sizeof(t_counter));
 	map = ft_split(buffered_map, '\n');
 	if (!map)
 		return (free(game), free(map), false);
