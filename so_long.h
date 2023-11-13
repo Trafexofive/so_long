@@ -9,9 +9,24 @@
 #include "./libft/libft.h"
 
 
+typedef enum keys
+{
+	W_KEY = 0x0D,
+	S_KEY = 0x01,
+	A_KEY = 0x00,
+	D_KEY = 0x02,
+	UP_KEY = 0x0D,
+	DOWN_KEY = 0x7D,
+	LEFT_KEY = 0x7B,
+	RIGHT_KEY = 0x7C,
+	ESC_KEY = 0x7E,
+} keys;
+
+
 # define true 1
 # define false 0
 # define TILE 64
+# define PLAYER_PATH "./textures/player.xpm"
 # define floor_path "./textures/floor.xpm"
 # define wall_path "./textures/wall.xpm"
 # define exit_path "./textures/exit.xpm"
@@ -32,7 +47,7 @@ typedef struct point
 {
 	int x;
 	int y;
-}t_point;
+}				t_point;
 
 typedef struct s_counter
 {
@@ -41,42 +56,35 @@ typedef struct s_counter
 	unsigned int	exit;
 	unsigned int 	collectibles;
 	// to keep
-}t_counter;
+}				t_counter;
 
 typedef struct s_img_data
 {
+	int		img_width;
+	int		img_height;
+
 	void	*floor_img;
 	void	*wall_img;
 	void	*coin_img;
 	void	*exit_img;
+	void	*player_img;
+
 	int		tile_width; // divide the res / 64
 	int		tile_lenght;
-}t_img_data;
-
-
-// typedef struct elements 
-// {
-// 	int	player;
-// 	int	exit;
-// 	int collectibles;
-// 	int wall;
-// 	int floor;
-// }t_map_elements;
-
-
+	// t_point	m_pos;
+}			t_img_data;
 
 typedef struct game_info
 {
-	char			**map;
-	t_point			p_pos;
-	unsigned int 	c_count;
-	int 	width;
-	int 	length;
-	void	*mlx;
-	void	*mlx_win;
-
-}		t_game_info;
-
+	void				*mlx;
+	void				*mlx_win;
+	char				**map;
+	int 				width;
+	int 				length;
+	t_point				p_pos;
+	unsigned int 		c_count;
+	struct s_img_data	textures;
+}			t_game_info;
 
 char	*read_file(char *map_name, t_game_info *data);
 void	ft_errors_exit(char *error_macro);
@@ -88,9 +96,5 @@ t_game_info		*so_long(char **s1);
 void	flood_field(char **flooded_map, int x, int y);
 bool	valid_flow(char **map);
 bool	valid_map(char *buffered_map, t_game_info *game);
-
-
-
-
 
 #endif
