@@ -1,7 +1,5 @@
 #include "so_long.h"
 
-
-
 bool	valid_map(char *buffered_map, t_game_info *game)
 {
 	// if map not valid free alll the shit
@@ -76,43 +74,30 @@ void	flood_field(char **flooded_map, int x, int y)
 		flooded_map[x][y] = 'X';
 }
 
-void	so_long(char **av)
+t_game_info	*so_long(char **av)
 {
 	char 		*map;
 	t_game_info	*game;
 
 	game = ft_calloc(sizeof(t_game_info), 1);
 	if (!game)
-		return ;
-	
+		return (NULL);
 	map = read_file(av[1], game);
 	if (valid_map(map, game) == false)
 	{
-		return (free(game), free(map));
+		free(game);
+		free(map);
+		exit(1);
 	}
 	char **flooded_map = ft_split(map,'\n');
 	flood_field(flooded_map, game->p_pos.x, game->p_pos.y);
-	for (size_t i = 0; flooded_map[i]; i++)
-	{
-		printf("%s\n", flooded_map[i]);
-	}
+	// for (size_t i = 0; flooded_map[i]; i++)
+	// {
+	// 	printf("%s\n", flooded_map[i]);
+	// }
 	if (valid_flow(flooded_map) == false)
-		return ;
+		return (NULL);
+	return (game);
 
-	
 }
 
-void	check_args(int ac, char **av)
-{
-	if (ac == 2)
-		so_long(av);
-	if (ac == 1)
-		ft_errors(ERROR_3);
-}
-
-int main(int ac, char **av)
-{
-	// no main in parse
-	check_args(ac, av);
-	return EXIT_FAILURE;
-}

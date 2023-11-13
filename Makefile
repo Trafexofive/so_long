@@ -1,28 +1,27 @@
+CC := cc
 
+NAME	:= so_long
 
-NAME	:= so_long 
-
-CFLAGS	:= -Wextra -Wall  -Imlx
+CFLAGS	:= -Wextra -Wall -Imlx
 #-Werror
-SRCS	:= main.c parse.c parse_map_utils.c error_utils.c
+SRCS	:=  so_long.c parse.c	parse_map_utils.c error_utils.c 
 
 LIBFT_A := libft/libft.a
 
-HEADERS := so_long.h libft/libft.h libft/gnl/get_next_line.h
+HEADERS := so_long.h libft/libft.h
 
 OBJS	:= ${SRCS:.c=.o}
 
 all: $(NAME)
-	 ./so_long maps/map1.ber
-lib :
+
+$(NAME): $(OBJS)
+	$(CC) $(OBJS) $(LIBFT_A) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+lib : 
 	make -C ./libft
 
-$(NAME): $(OBJS) 
-	$(CC) $(OBJS) $(LIBFT_A) -o $(NAME)
-
-%.o: %.c $(HEADERS) | lib 
-	$(CC) $(CFLAGS) -c $< -o $@ 
-
+%.o: %.c $(HEADERS) | lib
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	make clean -C ./libft
@@ -32,6 +31,6 @@ fclean: clean
 	make fclean -C ./libft
 	rm -rf $(NAME)
 
-re: fclean lib all
+re: fclean all
 
 .PHONY: all, lib, clean, fclean, re
