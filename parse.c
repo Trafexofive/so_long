@@ -174,12 +174,17 @@ void	*so_long(char **av)
 	
 }
 
-int main(int ac, char **av)
+void	check_args(int ac, char **av)
 {
 	if (ac == 2)
 		so_long(av);
-	else
+	if (ac == 1)
 		ft_errors(ERROR_3);
-	// no map provided
+}
+
+int main(int ac, char **av)
+{
+	// no main in parse
+	check_args(ac, av);
 	return EXIT_FAILURE;
 }

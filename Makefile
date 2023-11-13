@@ -1,6 +1,6 @@
 
 
-NAME	:= Game
+NAME	:= so_long 
 
 CFLAGS	:= -Wextra -Wall  -Imlx
 #-Werror
@@ -13,8 +13,8 @@ HEADERS := so_long.h libft/libft.h libft/gnl/get_next_line.h
 OBJS	:= ${SRCS:.c=.o}
 
 all: $(NAME)
-	 ./Game
-lib : 
+	 ./so_long
+lib :
 	make -C ./libft
 
 $(NAME): $(OBJS) 
@@ -32,6 +32,6 @@ fclean: clean
 	make fclean -C ./libft
 	rm -rf $(NAME)
 
-re: fclean all
+re: fclean lib all
 
 .PHONY: all, lib, clean, fclean, re

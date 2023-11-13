@@ -10,12 +10,13 @@
 # include <stdbool.h>
 #include "./libft/libft.h"
 
-#define true 1
+
+# define true 1
 # define false 0
 # define ERROR_1 "Map must be in .ber format.\n"
 # define ERROR_2 "Failed to load map.\n"
 # define ERROR_3 "Failed to provide map.\n"
-# define ERROR_4 ""
+# define ERROR_4 "\n"
 
 typedef struct point
 {
