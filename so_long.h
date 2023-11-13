@@ -48,6 +48,8 @@ typedef struct s_img_data
 	void	*wall_img;
 	void	*coin_img;
 	void	*exit_img;
+	int		tile_width; // divide the res / 64
+	int		tile_lenght;
 }t_img_data;
 
 // typedef struct elements 
@@ -58,6 +60,7 @@ typedef struct s_img_data
 // 	int wall;
 // 	int floor;
 // }t_map_elements;
+
 
 
 typedef struct game_info

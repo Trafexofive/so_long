@@ -37,11 +37,14 @@ void	draw_map(void *mlx, void *mlx_win, t_game_info *game, t_img_data *textures)
 			}
 			j = j + TILE;
 			y++;
+			textures->tile_lenght++;
 		}
+		textures->tile_lenght = 0;
 		i = i + TILE;
 		j = TILE;
 		y = 0;
 		x++;
+		textures->tile_width++;
 	}
 
 }
@@ -62,6 +65,7 @@ int main(int ac, char **av)
 {
 	void		*mlx;
 	void		*mlx_win;
+
 
 	t_game_info	*game;
 	t_img_data	*textures;
