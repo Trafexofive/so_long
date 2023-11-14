@@ -37,6 +37,7 @@ bool	valid_map(char *buffered_map, t_game_info *game)
 		return (false);
 	game->p_pos = elemts.p_pos;
 	game->c_count = elemts.collectibles;
+	game->e_pos = elemts.e_pos;
 	game->map = map;
 	return (true);
 }

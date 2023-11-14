@@ -78,67 +78,57 @@ int  colision(char c)
 		return(0);
 }
 
+
+
 void player_move(t_game_info *game , int x, int y) 
 {
 	// after move was authorized
-	if (game->map[game->p_pos.y + y][game->p_pos.x + x] == 'C')
+	if (game->map[game->p_pos.y + y][game->p_pos.x + x] == 'C' )
 	{
 		game->c_count--;
-		if (game->c_count == 0)
-			game->exit_allowed = true;
+		game->exit_allowed = (game->c_count == 0);
 		game->map[game->p_pos.y + y][game->p_pos.x + x] = '0';
 		fprintf(stderr,"coins left = %d  ",game->c_count);
 	}
-
-	game->p_pos.x += x;
-	game->p_pos.y += y;
-	
-	// if (game->map[game->p_pos.y][game->p_pos.x] == 'C')
-	// {
-	// 	game->map[game->p_pos.y][game->p_pos.x] = '0';
-	// 	game->c_count--;
-	// }
-	// if (game->map[game->p_pos.y + y][game->p_pos.x + x] == 'E' && game->c_count == 0)
-	// {
-	// 	exit(0);
-	// }
-	
-	// else if (colision(game->map[game->p_pos.y - 1][game->p_pos.x]) == 3)
-	// {
-	// 	game->map[game->p_pos.y - 1][game->p_pos.x] = '0';
-	// 	game->c_count--;
-	// }
-	// if (colision(game->map[game->p_pos.y - 1][game->p_pos.x]) == 3)
-	// {
-	// 	game->map[game->p_pos.y - 1][game->p_pos.x] = '0';
-	// 	game->c_count--;
-	// }
-
+	if (game->map[game->p_pos.y + y][game->p_pos.x + x] == 'E' && game->exit_allowed == true)
+		ft_errors_exit("Win Mutha Sucka");
+	// if (game->exit_allowed == true &&)
+		game->p_pos.x += x;
+		game->p_pos.y += y;
 
 }
+/*
+	int  y = (key == up) * (-1) + (key == down);
+	int  x = (key == left) * (-1) + (key == right);
+	if (playerp[py + y][px + x] != '1'){
+		
+	}
+	zellllboooouz
+*/
 
-// bool	coin_on_tile(t_game_info *game)
-// {
-// else
-// 		return (false);
-// 	return (true);
-// }
+int	check_collision(char c, t_game_info *game)
+{
+	if (c == '1')
+		return (false);
+	if (c == 'E' && !(game->exit_allowed))
+		return (false);
+	return (true);
+}
 
 int	key_hook(int key, t_game_info *game) // handling keybord in put as well as wall colision
 {
-	if ((key == W_KEY || key == UP_KEY) && game->map[game->p_pos.y - 1][game->p_pos.x] != '1' && game->map[game->p_pos.y - 1][game->p_pos.x] != 'E')
+
+
+
+	if ((key == W_KEY) && check_collision(game->map[game->p_pos.y - 1][game->p_pos.x], game))
 		player_move(game,0,-1);
-		// game->p_pos.y--; // update
-	else if ((key == S_KEY || key == DOWN_KEY) && game->map[game->p_pos.y + 1][game->p_pos.x] != '1' && game->map[game->p_pos.y + 1][game->p_pos.x] != 'E')
+	else if ((key == S_KEY) && check_collision(game->map[game->p_pos.y + 1][game->p_pos.x], game))
 		player_move(game,0,1);
-	else if ((key == A_KEY || key ==LEFT_KEY) 
-		&& game->map[game->p_pos.y][game->p_pos.x - 1] != '1' && game->map[game->p_pos.y][game->p_pos.x - 1] != 'E')
+	else if ((key == A_KEY) &&  check_collision(game->map[game->p_pos.y][game->p_pos.x - 1], game))
 		player_move(game,-1,0);
-	else if ((key == D_KEY || key == RIGHT_KEY ) 
-		&& game->map[game->p_pos.y][game->p_pos.x + 1] != '1' && game->map[game->p_pos.y][game->p_pos.x + 1] != 'E')
+	else if ((key == D_KEY) &&  check_collision(game->map[game->p_pos.y][game->p_pos.x + 1], game))
 		player_move(game,+1,0);
 	
-
 	// else if (key == ESC_KEY)
 	// 	game->p_pos.x++;
 }

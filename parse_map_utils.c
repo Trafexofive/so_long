@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 03:39:26 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/13 04:05:13 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:05:16 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*read_file(char *map_name, t_game_info *data)
 	int		fd;
 
 	map_name_len = ft_strlen(map_name);
-	if (strnstr(map_name, ".ber", map_name_len) == NULL) // .bers
+	if (strnstr(map_name, ".ber", map_name_len) == NULL)
 	{
 		free(data);
 		ft_errors_exit(ERROR_1);
@@ -72,7 +72,11 @@ bool	valid_element(char **map, int i , int j , t_counter *elements)
 		else if (c == 'C')
 			elements->collectibles++;
 		else if ( c == 'E')
+		{
 			elements->exit++;
+			elements->e_pos.x = i;
+			elements->e_pos.y = j;
+		}
 		return (true);
 	}
 	return (false);

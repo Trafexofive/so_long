@@ -15,11 +15,6 @@ typedef enum keys
 	S_KEY = 0x01,
 	A_KEY = 0x00,
 	D_KEY = 0x02,
-	UP_KEY = 0x0D,
-	DOWN_KEY = 0x7D,
-	LEFT_KEY = 0x7B,
-	RIGHT_KEY = 0x7C,
-	ESC_KEY = 0x7E,
 } keys;
 
 
@@ -37,9 +32,9 @@ typedef enum keys
 # define ERROR_4 "Invalid Map : Map must be surronded by walls\n"
 # define ERROR_5 "Invalid Map : unable to find path to object\n"
 # define ERROR_6 "Invalid args : Too many arguments\n"
-# define ERROR_7 "Invalid Map\n"
-# define ERROR_8 "\n"
-# define ERROR_9 "\n"
+# define ERROR_7 "Invalid Map : Map missing exit\n"
+# define ERROR_8 "Invalid Map : Map missing player\n"
+# define ERROR_9 "Invalid Map : Map must have at least one collectible\n"
 # define ERROR_10 "\n"
 # define ERROR_11 "\n"
 
@@ -53,6 +48,7 @@ typedef struct s_counter
 {
 	unsigned int	player;
 	t_point			p_pos;
+	t_point			e_pos;
 	unsigned int	exit;
 	unsigned int 	collectibles;
 	// to keep
@@ -84,6 +80,7 @@ typedef struct game_info
 	t_point				p_pos;
 	unsigned int 		c_count;
 	bool				exit_allowed;
+	t_point				e_pos;
 	struct s_img_data	textures;
 }			t_game_info;
 
