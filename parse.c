@@ -34,7 +34,7 @@ bool	valid_map(char *buffered_map, t_game_info *game)
 
 	}
 	if (valid_walls(map[i]) == -1 || allowed_elements(&elemts) == false)
-		return (fprintf(stderr,"%d == %d %d %d\n",5,elemts.collectibles,elemts.exit,elemts.player),false);
+		return (false);
 	game->p_pos = elemts.p_pos;
 	game->c_count = elemts.collectibles;
 	game->map = map;

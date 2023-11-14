@@ -1,5 +1,37 @@
 #include "so_long.h"
 
+
+void	*jadarmi(void *mlx_ptr, char *filename, int *width, int *height)
+{
+	void *p;
+
+	p = NULL;
+	p = mlx_xpm_file_to_image(mlx_ptr, filename, width, height);
+	if (!p)
+		return (NULL);
+	return (p);
+}
+
+void	*load_textures(t_game_info *game) // bool 
+{
+	game->textures.player_img = jadarmi(game->mlx, PLAYER_PATH, &game->textures.img_width, &game->textures.img_height); // missing handle error
+	game->textures.coin_img = jadarmi(game->mlx, coin_path, &game->textures.img_width, &game->textures.img_height);
+	game->textures.exit_img = jadarmi(game->mlx, exit_path, &game->textures.img_width, &game->textures.img_height);
+	game->textures.floor_img = jadarmi(game->mlx, floor_path, &game->textures.img_width, &game->textures.img_height); // prottect against  null
+	game->textures.wall_img = jadarmi(game->mlx, wall_path, &game->textures.img_width, &game->textures.img_height);
+	// if (game->textures.coin_img)
+	return (NULL);
+}
+
+void	free_textures(struct s_img_data *textures) //for now
+{
+		free(textures->floor_img);
+		free(textures->wall_img);
+		free(textures->coin_img);
+		free(textures->exit_img);
+		free(textures->player_img);
+}
+
 int	draw_map(t_game_info *game)
 {
 	int i;
@@ -35,27 +67,6 @@ int	draw_map(t_game_info *game)
 	return(0);
 }
 
-void	*jadarmi(void *mlx_ptr, char *filename, int *width, int *height)
-{
-	void *p;
-
-	p = NULL;
-	p = mlx_xpm_file_to_image(mlx_ptr, filename, width, height);
-	if (!p)
-		exit(0);
-	return (p);
-}
-
-
-void	*load_textures(t_game_info *game) // bool 
-{
-	game->textures.player_img = jadarmi(game->mlx, PLAYER_PATH, &game->textures.img_width, &game->textures.img_height); // missing handle error
-	game->textures.coin_img = jadarmi(game->mlx, coin_path, &game->textures.img_width, &game->textures.img_height);
-	game->textures.exit_img = jadarmi(game->mlx, exit_path, &game->textures.img_width, &game->textures.img_height);
-	game->textures.floor_img = jadarmi(game->mlx, floor_path, &game->textures.img_width, &game->textures.img_height); // prottect against  null
-	game->textures.wall_img = jadarmi(game->mlx, wall_path, &game->textures.img_width, &game->textures.img_height);
-	return (NULL);
-}
 
 int  colision(char c)
 {
@@ -67,10 +78,21 @@ int  colision(char c)
 		return(0);
 }
 
-void events(t_game_info *game , int x, int y) 
+void player_move(t_game_info *game , int x, int y) 
 {
+	// after move was authorized
+	if (game->map[game->p_pos.y + y][game->p_pos.x + x] == 'C')
+	{
+		game->c_count--;
+		if (game->c_count == 0)
+			game->exit_allowed = true;
+		game->map[game->p_pos.y + y][game->p_pos.x + x] = '0';
+		fprintf(stderr,"coins left = %d  ",game->c_count);
+	}
+
 	game->p_pos.x += x;
 	game->p_pos.y += y;
+	
 	// if (game->map[game->p_pos.y][game->p_pos.x] == 'C')
 	// {
 	// 	game->map[game->p_pos.y][game->p_pos.x] = '0';
@@ -80,7 +102,7 @@ void events(t_game_info *game , int x, int y)
 	// {
 	// 	exit(0);
 	// }
-	fprintf(stderr,"coins left = %d  ",game->c_count);
+	
 	// else if (colision(game->map[game->p_pos.y - 1][game->p_pos.x]) == 3)
 	// {
 	// 	game->map[game->p_pos.y - 1][game->p_pos.x] = '0';
@@ -95,26 +117,31 @@ void events(t_game_info *game , int x, int y)
 
 }
 
+// bool	coin_on_tile(t_game_info *game)
+// {
+// else
+// 		return (false);
+// 	return (true);
+// }
 
-int	key_hook(int key, t_game_info *game)
+int	key_hook(int key, t_game_info *game) // handling keybord in put as well as wall colision
 {
-	if ((key == W_KEY || key == UP_KEY) && game->map[game->p_pos.y - 1][game->p_pos.x] != '1')
-		events(game,0,-1);
+	if ((key == W_KEY || key == UP_KEY) && game->map[game->p_pos.y - 1][game->p_pos.x] != '1' && game->map[game->p_pos.y - 1][game->p_pos.x] != 'E')
+		player_move(game,0,-1);
 		// game->p_pos.y--; // update
-	else if ((key == S_KEY || key == DOWN_KEY) && game->map[game->p_pos.y + 1][game->p_pos.x] != '1')
-		events(game,0,1);
-	else if ((key == A_KEY || key ==LEFT_KEY) && game->map[game->p_pos.y][game->p_pos.x - 1] != '1')
-		events(game,-1,0);
-	else if ((key == D_KEY || key == RIGHT_KEY )&& game->map[game->p_pos.y][game->p_pos.x + 1] != '1')
-		events(game,+1,0);
+	else if ((key == S_KEY || key == DOWN_KEY) && game->map[game->p_pos.y + 1][game->p_pos.x] != '1' && game->map[game->p_pos.y + 1][game->p_pos.x] != 'E')
+		player_move(game,0,1);
+	else if ((key == A_KEY || key ==LEFT_KEY) 
+		&& game->map[game->p_pos.y][game->p_pos.x - 1] != '1' && game->map[game->p_pos.y][game->p_pos.x - 1] != 'E')
+		player_move(game,-1,0);
+	else if ((key == D_KEY || key == RIGHT_KEY ) 
+		&& game->map[game->p_pos.y][game->p_pos.x + 1] != '1' && game->map[game->p_pos.y][game->p_pos.x + 1] != 'E')
+		player_move(game,+1,0);
+	
+
 	// else if (key == ESC_KEY)
 	// 	game->p_pos.x++;
-
 }
-
-// int hooks(t_game_info	*game)
-// {
-// }
 
 int main(int ac, char **av)
 {
@@ -136,9 +163,8 @@ int main(int ac, char **av)
 		// mlx_hook(game->mlx_win,02,0L,hooks,game);
 		// mlx_hook();
 				//catching hoooks
-				// 
-
 		// mlx_hook(vars.win, ON_DESTROY, 0, close, &vars);
 		mlx_loop(game->mlx);
+		free(load_textures);
 	}
 }

@@ -34,10 +34,10 @@ typedef enum keys
 # define ERROR_1 "Invalid Map : .ber format required\n"
 # define ERROR_2 "Failed to read map.\n"
 # define ERROR_3 "Failed to provide map.\n"
-# define ERROR_4 "Invalid map\n"
-# define ERROR_5 "Invalid map : unable to find path to object\n"
+# define ERROR_4 "Invalid Map : Map must be surronded by walls\n"
+# define ERROR_5 "Invalid Map : unable to find path to object\n"
 # define ERROR_6 "Invalid args : Too many arguments\n"
-# define ERROR_7 "\n"
+# define ERROR_7 "Invalid Map\n"
 # define ERROR_8 "\n"
 # define ERROR_9 "\n"
 # define ERROR_10 "\n"
@@ -69,7 +69,7 @@ typedef struct s_img_data
 	void	*exit_img;
 	void	*player_img;
 
-	int		tile_width; // divide the res / 64
+	int		tile_width;
 	int		tile_lenght;
 	// t_point	m_pos;
 }			t_img_data;
@@ -83,6 +83,7 @@ typedef struct game_info
 	int 				length;
 	t_point				p_pos;
 	unsigned int 		c_count;
+	bool				exit_allowed;
 	struct s_img_data	textures;
 }			t_game_info;
 
