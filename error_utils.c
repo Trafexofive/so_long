@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 03:48:49 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/13 05:43:23 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:45:17 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_errors(char *error_macro)
 void	ft_errors_exit(char *error_macro)
 {
 	ft_putstr_fd(error_macro, 1);
+
 	exit(1);
 }
 

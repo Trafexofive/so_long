@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 03:39:26 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/14 15:05:16 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/14 20:45:42 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,15 @@ bool	valid_element(char **map, int i , int j , t_counter *elements)
 			elements->e_pos.x = i;
 			elements->e_pos.y = j;
 		}
-		return (true);
+		return (TRUE);
 	}
-	return (false);
+	return (FALSE);
 		
 }
 
 bool allowed_elements(t_counter *elements)
 {
 	if (elements->player == 1 && elements->exit == 1 && elements->collectibles > 0)
-		return(true);
-	return(false);
+		return(TRUE);
+	return(FALSE);
 }

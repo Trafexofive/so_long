@@ -2,44 +2,45 @@
 
 bool	valid_map(char *buffered_map, t_game_info *game)
 {
-	// if map not valid free alll the shit
-	int i = 1;
-	int j = 1;
-	char	**map;
-	t_counter elemts;
+	int 		i;
+	int 		j;
+	char		**map;
+	t_counter	objects;
 
-	ft_bzero(&elemts, sizeof(t_counter));
+	i = 1;
+	j = 1;
+	ft_bzero(&objects, sizeof(t_counter));
 	map = ft_split(buffered_map, '\n');
 	if (!map)
-		return (free(game), free(map), false);
+		return (free(game), free(map), FALSE);
 	game->length = valid_walls (map[0]);
 	if (game->length == -1)
-		return (free(game), free(map), false); // free map not surrounded by walls;
+		return (free(game), free(map), FALSE); // free map not surrounded by walls;
 
 	while (map[i] && i < (game->width - 1))
 	{
 		if (map[i][0] != '1')
-			return (false); //not rectangulor
+			return (FALSE); //not rectangulor
 		// printf("%s\n",map[i]);
 		while (map[i][j])
 		{
-			if (valid_element(map,i,j,&elemts) == false)
-				return (false);
+			if (valid_element(map,i,j,&objects) == FALSE)
+				return (FALSE);
 			j++;
 		}
 		if (j != game->length || map[i][j - 1] != '1')// checking for the valid sides
-			return (false);
+			return (FALSE);
 		j = 1;
 		i++;
 
 	}
-	if (valid_walls(map[i]) == -1 || allowed_elements(&elemts) == false)
-		return (false);
-	game->p_pos = elemts.p_pos;
-	game->c_count = elemts.collectibles;
-	game->e_pos = elemts.e_pos;
+	if (valid_walls(map[i]) == -1 || allowed_elements(&objects) == FALSE)
+		return (FALSE);
+	game->p_pos = objects.p_pos;
+	game->c_count = objects.collectibles;
+	game->e_pos = objects.e_pos;
 	game->map = map;
-	return (true);
+	return (TRUE);
 }
 
 bool	valid_flow(char **map)
@@ -52,13 +53,13 @@ bool	valid_flow(char **map)
 		while (map[x][y])
 		{
 			if (map[x][y] ==  'C' || map[x][y] == 'E' || map[x][y] == 'P')
-				return (false);
+				return (FALSE);
 			y++;
 		}
 		y = 1;
 		x++;
 	}
-	return (true);
+	return (TRUE);
 }
 
 void	flood_field(char **flooded_map, int x, int y)
@@ -84,7 +85,7 @@ t_game_info	*so_long(char **av)
 	if (!game)
 		return (NULL);
 	map = read_file(av[1], game);
-	if (valid_map(map, game) == false)
+	if (valid_map(map, game) == FALSE)
 	{
 		free(game);
 		free(map);
@@ -96,7 +97,7 @@ t_game_info	*so_long(char **av)
 	// {
 	// 	printf("%s\n", flooded_map[i]);
 	// }
-	if (valid_flow(flooded_map) == false)
+	if (valid_flow(flooded_map) == FALSE)
 		return (NULL);
 	return (game);
 
