@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:55:21 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 03:08:41 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:02:48 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@
 
 # define TILE 64
 
-//double free texture not found use jadarmi
+/* #################  Texture  ################# */
 
 # define PLAYER_PATH "../../textures/player.xpm"
 # define FLOOR_PATH "../../textures/floor.xpm"
 # define WALL_PATH "../../textures/wall.xpm"
 # define EXIT_PATH "../../textures/exit.xpm"
 # define COIN_PATH "../../textures/coin.xpm"
+
+/* #################  Error_Messages  ################# */
 
 
 # define ERROR_1 "Invalid Map : .ber format required\n"
@@ -38,7 +40,7 @@
 # define ERROR_8 "Invalid Map : Map has duplicated object\n"
 # define ERROR_9 "Invalid Map : Map must have at least one collectible\n"
 # define ERROR_10 "Memory Error : \n"
-# define ERROR_11 "\n"
+# define ERROR_11 "Error : Texture not found\n"
 
 
 typedef enum keys

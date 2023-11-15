@@ -6,13 +6,13 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:52:25 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 04:40:29 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:03:07 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/so_long.h"
 
-static	int file_format(char *map_name)  // print then exit
+static	int file_format(char *map_name)
 {
 	size_t	map_name_len;
 	int		fd;
@@ -28,17 +28,19 @@ static	int file_format(char *map_name)  // print then exit
 
 static void	open_window(t_game_info *game)
 {
-	unsigned int w = 0;
-	unsigned int h = 0;
+	unsigned int w;
+	unsigned int h;
 
+	h = 0;
+	w = 0;
 	h = game->width * TILE;
 	w = game->length * TILE;
 
 	if (w < 2980 || h < 1550)
 	{
-		game->mlx = mlx_init(); // protect against null
+		game->mlx = mlx_init();
 		game->mlx_win = mlx_new_window(game->mlx, w , h, "so_long");
-		load_textures(game); // if they fail we exit
+		load_textures(game);
 	}
 	else
 	{
@@ -61,7 +63,7 @@ int main(int ac, char **av)
 	{
 		game = parse(file_format(*(++av)));
 		game->map[game->p_pos.y][game->p_pos.x] = '0';
-		open_window(game);// images leaks // exit game functionality free exit
+		open_window(game);
 		mlx_loop_hook(game->mlx, (void *)draw_map, game);
 		mlx_key_hook(game->mlx_win, (void *)key_hook,game); 
 		mlx_hook(game->mlx_win, 17, 0, free_all, game);
