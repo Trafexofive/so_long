@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:51:12 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:59:27 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 06:01:38 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_map(t_game_info *game)
 
 	i = 0;
 	j = 0;
-	mlx_clear_window (game->mlx,game->mlx_win);
+	mlx_clear_window (game->mlx, game->mlx_win);
 	while (game->map[i])
 	{
 		while (game->map[i][j])
