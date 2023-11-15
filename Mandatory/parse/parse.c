@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:54:28 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 04:39:57 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:05:27 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static bool		valid_map(char **map, t_game_info *game)
     	j = 1;
     	i++;
 	}
-	if (valid_walls (map[0] , &j) == -1 || allowed_elements(&objects) == FALSE)
+	if (valid_walls (map[i] , &j) == -1 || allowed_elements(&objects) == FALSE)
 		return (FALSE);
 	game->p_pos = objects.p_pos;
 	game->c_count = objects.collectibles;
@@ -110,7 +110,7 @@ t_game_info	*parse(int fd)
 	close (fd);
 	flooded_map = ft_split(map, '\n');
 	if (!flooded_map)
-	    return (free(game), ft_errors_exit("Memory Failed to allocate", 1), NULL);
+	    return (free(game), ft_errors_exit(, 1), NULL);
 	if (valid_map(flooded_map, game) == FALSE)
 		return (free2d(flooded_map),free(map),free(game), ft_errors_exit("Map Failed To parse", 1),NULL);
 	flooded_map = NULL;

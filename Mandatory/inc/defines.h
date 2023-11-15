@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:55:21 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:04:38 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:06:18 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define ERROR_7 "Invalid Map : Map missing object\n"
 # define ERROR_8 "Invalid Map : Map has duplicated object\n"
 # define ERROR_9 "Invalid Map : Map must have at least one collectible\n"
-# define ERROR_10 "Memory Error : \n"
+# define ERROR_10 "Memory Error : Memory Failed to allocate \n"
 # define ERROR_11 "Error : Texture not found\n"
 
 /* #################  Key Hooks  ################# */
