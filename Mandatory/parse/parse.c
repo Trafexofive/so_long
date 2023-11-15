@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:54:28 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:13:16 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:32:53 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,41 +41,42 @@ static char	*strjoinem(char *s1, char *s2)
 	return (full_str);
 }
 
-static char		*read_file(t_game_info *game , int fd)
+static char	*read_file(t_game_info *game, int fd)
 {
 	char	*line;
-	char 	*tmp2;
+	char	*str;
 
-	tmp2 = NULL;
+	str = NULL;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
-			break;
-		if(*line == '\n')
-			return (free(line),free(game),close(fd),ft_errors_exit(ERROR_8, 1),NULL);
-		tmp2 = strjoinem(tmp2, line);
+			break ;
+		if (*line == '\n')
+			return (free(line), free(game), close(fd),
+				ft_errors_exit(ERROR_8, 1), NULL);
+		str = strjoinem(str, line);
 		free(line);
 		line = NULL;
 		game->width++;
 	}
-	return (tmp2);
+	return (str);
 }
 
-static bool		valid_map(char **map, t_game_info *game)
+static bool	valid_map(char **map, t_game_info *game)
 {
-	int 		i;
-	int 		j;
+	int			i;
+	int			j;
 	t_counter	objects;
 
 	i = 1;
 	j = 1;
-	ft_bzero(&objects, sizeof(t_counter));
-	if (valid_walls (map[0] , &game->length) == -1)
+	ft_bzero (&objects, sizeof(t_counter));
+	if (valid_walls (map[0], &game->length) == -1)
 		return (FALSE);
 	while (map[i] && i < (game->width - 1))
 	{
-    	if (map[i][0] != '1')
+		if (map[i][0] != '1')
         	return (free(game), free2d(map), FALSE);
     	while (map[i][j])
     	{
@@ -88,7 +89,7 @@ static bool		valid_map(char **map, t_game_info *game)
     	j = 1;
     	i++;
 	}
-	if (valid_walls (map[i] , &j) == -1 || allowed_elements(&objects) == FALSE)
+	if (valid_walls (map[i], &j) == -1 || allowed_elements (&objects) == FALSE)
 		return (FALSE);
 	game->p_pos = objects.p_pos;
 	game->c_count = objects.collectibles;

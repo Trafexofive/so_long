@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:52:13 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:18:44 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:30:25 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	free_textures(t_game_info *game)
 	mlx_destroy_image(game->mlx, game->textures.floor_img);
 	mlx_destroy_image(game->mlx, game->textures.wall_img);
 }
-
 
 int	free_all(t_game_info *game)
 {
@@ -42,10 +41,10 @@ void	*exit_texture(t_game_info *game)
 	return (NULL);
 }
 
-void	*jadarmi(t_game_info   *game, char *filename)
+void	*jadarmi(t_game_info *game, char *filename)
 {
 	void	*p;
-	
+
 	p = mlx_xpm_file_to_image(game->mlx, filename, &game->textures.img_width, &game->textures.img_height);
 	if (!p)
 		return (exit_texture(game), NULL);

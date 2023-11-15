@@ -6,13 +6,12 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:55:21 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:13:06 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:33:44 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
-
 
 # define TRUE 1
 # define FALSE 0
@@ -43,7 +42,7 @@
 # define ERROR_11 "Error : Texture not found\n"
 
 
-/* #################  Key Hooks  ################# */
+/* #################    Key Hooks    ################# */
 
 typedef enum keys
 {
@@ -55,7 +54,7 @@ typedef enum keys
 } keys;
 
 
-/* #################  Structs  ################# */
+/* #################     Structs     ################# */
 
 typedef struct point
 {
@@ -107,9 +106,5 @@ typedef struct game_info
 	t_point				e_pos;
 	t_point				p_pos;
 }						t_game_info;
-
-
-
-
 
 #endif
