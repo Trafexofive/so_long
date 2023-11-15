@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:55:21 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:33:44 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:56:42 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 
 /* #################  Error_Messages  ################# */
 
-
 # define ERROR_1 "Invalid Map : .ber format required\n"
 # define ERROR_2 "Failed to read map.\n"
 # define ERROR_3 "Failed to provide map.\n"
@@ -41,32 +40,30 @@
 # define ERROR_10 "Memory Error : Memory Failed to allocate \n"
 # define ERROR_11 "Error : Texture not found\n"
 
-
 /* #################    Key Hooks    ################# */
 
-typedef enum keys
+typedef enum s_keys
 {
 	W_KEY = 0x0D,
 	S_KEY = 0x01,
 	A_KEY = 0x00,
 	D_KEY = 0x02,
 	ESC_KEY= 0x35,
-} keys;
-
+}				t_keys;
 
 /* #################     Structs     ################# */
 
-typedef struct point
+typedef struct s_point
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 }				t_point;
 
 typedef struct s_counter
 {
 	unsigned int	player;
 	unsigned int	exit;
-	unsigned int 	collectibles;
+	unsigned int	collectibles;
 
 	t_point			e_pos;
 	t_point			p_pos;
@@ -82,29 +79,25 @@ typedef struct s_img_data
 
 	int		img_width;
 	int		img_height;
+}				t_img_data;
 
-	
-}			t_img_data;
-
-typedef struct game_info
+typedef struct s_game_info
 {
-	void				*mlx;
-	void				*mlx_win;
+	void			*mlx;
+	void			*mlx_win;
 
-	bool				exit_allowed;
+	char			**map;
+	int				width;
+	int				length;
 
-	int 				width;
-	int 				length;
+	t_point			e_pos;
+	t_point			p_pos;
 
-	char				**map;
+	unsigned int	c_count;
+	unsigned int	move_count;
+	t_img_data		textures;
+	bool			exit_allowed;
 
-	unsigned int 		c_count;
-	unsigned int		move_count;
-
-	t_img_data			textures;
-
-	t_point				e_pos;
-	t_point				p_pos;
-}						t_game_info;
+}					t_game_info;
 
 #endif

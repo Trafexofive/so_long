@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:52:13 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:30:25 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:43:38 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	free_all(t_game_info *game)
 	free_textures(game);
 	free2d(game->map);
 	free(game);
-	ft_errors_exit("Quiting\n", 1);
+	ft_exit("Quiting\n", 1);
 	return (0);
 }
 
@@ -37,7 +37,7 @@ void	*exit_texture(t_game_info *game)
 	mlx_destroy_window(game->mlx, game->mlx_win);
 	free(game->mlx);
 	free(game);
-	ft_errors_exit(ERROR_11, 1);
+	ft_exit(ERROR_11, 1);
 	return (NULL);
 }
 
@@ -45,7 +45,8 @@ void	*jadarmi(t_game_info *game, char *filename)
 {
 	void	*p;
 
-	p = mlx_xpm_file_to_image(game->mlx, filename, &game->textures.img_width, &game->textures.img_height);
+	p = mlx_xpm_file_to_image(game->mlx, filename, 
+			&game->textures.img_width, &game->textures.img_height);
 	if (!p)
 		return (exit_texture(game), NULL);
 	return (p);

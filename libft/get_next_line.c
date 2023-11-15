@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 08:42:49 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/13 02:53:03 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:46:01 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_find_nl(char *s, int c)
 	}
 	return (0);
 }
-
 
 char	*get_next_line(int fd)
 {
@@ -102,5 +101,3 @@ static char	*ft_append_line(int fd, char *read_buffer, char *static_buffer)
 	}
 	return (static_buffer);
 }
-
-

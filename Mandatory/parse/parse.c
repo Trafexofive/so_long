@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:54:28 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:32:53 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:49:57 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	*read_file(t_game_info *game, int fd)
 			break ;
 		if (*line == '\n')
 			return (free(line), free(game), close(fd),
-				ft_errors_exit(ERROR_8, 1), NULL);
+				ft_exit(ERROR_8, 1), NULL);
 		str = strjoinem(str, line);
 		free(line);
 		line = NULL;
@@ -77,17 +77,17 @@ static bool	valid_map(char **map, t_game_info *game)
 	while (map[i] && i < (game->width - 1))
 	{
 		if (map[i][0] != '1')
-        	return (free(game), free2d(map), FALSE);
-    	while (map[i][j])
-    	{
-    	    if (valid_element(map,i,j,&objects) == FALSE)
-    	        return (FALSE);
-    	    j++;
-    	}
-    	if (j != game->length || map[i][j - 1] != '1')
-    	    return (FALSE);
-    	j = 1;
-    	i++;
+			return (free(game), free2d(map), FALSE);
+		while (map[i][j])
+		{
+			if (valid_element(map, i, j, &objects) == FALSE)
+				return (FALSE);
+			j++;
+		}
+		if (j != game->length || map[i][j - 1] != '1')
+			return (FALSE);
+		j = 1;
+		i++;
 	}
 	if (valid_walls (map[i], &j) == -1 || allowed_elements (&objects) == FALSE)
 		return (FALSE);
@@ -100,28 +100,29 @@ static bool	valid_map(char **map, t_game_info *game)
 
 t_game_info	*parse(int fd)
 {
-	char 		*map;
-	char 		**flooded_map;
+	char		*map;
+	char		**flooded_map;
 	t_game_info	*game;
 
-	game = ft_calloc(sizeof(t_game_info), 1);
+	game = ft_calloc (sizeof(t_game_info), 1);
 	if (!game)
 		return (NULL);
-	map = read_file(game, fd);
+	map = read_file (game, fd);
 	close (fd);
-	flooded_map = ft_split(map, '\n');
+	flooded_map = ft_split (map, '\n');
 	if (!flooded_map)
-	    return (free(game), ft_errors_exit(ERROR_10, 1), NULL);
+		return (free(game), ft_exit (ERROR_10, 1), NULL);
 	if (valid_map(flooded_map, game) == FALSE)
-		return (free2d(flooded_map),free(map),free(game), ft_errors_exit(ERROR_9, 1),NULL);
+		return (free2d (flooded_map), free(map), 
+			free(game), ft_exit (ERROR_9, 1), NULL);
 	flooded_map = NULL;
-	flooded_map = ft_split(map,'\n');
-	free(map);
+	flooded_map = ft_split (map, '\n');
+	free (map);
 	if (!flooded_map)
-	    return (free2d(game->map),free(game), ft_errors_exit(ERROR_10, 1),NULL);
+		return (free2d(game->map), free(game), ft_exit (ERROR_10, 1), NULL);
 	flood_field(flooded_map, game->p_pos.x, game->p_pos.y);
 	if (valid_flow(flooded_map) == FALSE)
-		return(free2d(flooded_map),free2d(game->map),free(game),ft_errors_exit(ERROR_5, 1),NULL);
+		return (free2d(flooded_map), free2d(game->map), 
+			free(game), ft_exit (ERROR_5, 1), NULL);
 	return (free2d(flooded_map), game);
 }
-

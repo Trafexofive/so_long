@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 00:12:40 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 00:13:28 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:53:54 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	flood_field(char **flooded_map, int x, int y)
 {
-	if (flooded_map[x][y] && flooded_map[x][y] != '1' && flooded_map[x][y] != 'E' && flooded_map[x][y] != 'X')
+	if (flooded_map[x][y] && flooded_map[x][y] != '1' &&
+		flooded_map[x][y] != 'E' && flooded_map[x][y] != 'X')
 	{
 		flooded_map[x][y] = 'X';
 		flood_field(flooded_map, x + 1, y);
@@ -28,14 +29,16 @@ void	flood_field(char **flooded_map, int x, int y)
 
 bool	valid_flow(char **map)
 {
-	int x = 1;
-	int y = 1;
+	int	x;
+	int	y;
 
+	x = 1;
+	y = 1;
 	while (map[x])
 	{
 		while (map[x][y])
 		{
-			if (map[x][y] ==  'C' || map[x][y] == 'E' || map[x][y] == 'P')
+			if (map[x][y] == 'C' || map[x][y] == 'E' || map[x][y] == 'P')
 				return (FALSE);
 			y++;
 		}
