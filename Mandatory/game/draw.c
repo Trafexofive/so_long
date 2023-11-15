@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:51:12 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 06:01:38 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 06:02:18 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	draw_map(t_game_info *game)
 		{
 			if (game->map[i][j] == '1')
 				mlx_put_image_to_window(game->mlx, game->mlx_win, 
-					game->textures.wall_img, TILE * j , TILE * i);
+					game->textures.wall_img, TILE * j, TILE * i);
 			else if (game->map[i][j] == '0' || game->map[i][j] == 'P')
 				mlx_put_image_to_window(game->mlx, game->mlx_win, 
 					game->textures.floor_img, TILE * j, TILE * i);
@@ -49,5 +49,6 @@ void	draw_map(t_game_info *game)
 		i++;
 		j = 0;
 	}
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->textures.player_img, TILE * game->p_pos.x, TILE * game->p_pos.y);
+	mlx_put_image_to_window(game->mlx, game->mlx_win, 
+		game->textures.player_img, TILE * game->p_pos.x, TILE * game->p_pos.y);
 }

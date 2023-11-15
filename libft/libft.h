@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:35:25 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 00:41:31 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 06:02:32 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ char	*ft_itoa(int n);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*get_next_line(int fd);
 int		ft_find_nl(char *s, int c);
-
 
 #endif
