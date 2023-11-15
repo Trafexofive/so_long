@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:35:25 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/13 02:52:10 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 00:41:31 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@
 # include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
+# include <stdbool.h>
 
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 100
-# endif
-
+# define BUFFER_SIZE 5
 
 int		ft_isdigit(int c);
 int		ft_isalpha(int c);

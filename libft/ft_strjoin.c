@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/04 19:32:53 by mlamkadm          #+#    #+#             */
-/*   Updated: 2022/12/11 08:56:48 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 04:13:00 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ char	*ft_strjoin(const char *s1, const char *s2)
 
 	i = 0;
 	j = 0;
-	full_len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	if (!s1 || !s2)
 		return (NULL);
+	full_len = ft_strlen(s1) + ft_strlen(s2) + 1;
 	full_str = (char *)malloc(full_len * sizeof(char));
 	if (!full_str)
 		return (NULL);

@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 20:56:12 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/14 20:58:14 by mlamkadm         ###   ########.fr       */
+/*   Created: 2023/11/14 23:55:21 by mlamkadm          #+#    #+#             */
+/*   Updated: 2023/11/15 03:08:41 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef DEFINES_H
+# define DEFINES_H
 
-# include <stdio.h>
-# include <unistd.h>
-# include <mlx.h>
-# include <stdbool.h>
-# include "./libft/libft.h"
 
 # define TRUE 1
 # define FALSE 0
+
 # define TILE 64
-# define PLAYER_PATH "./textures/player.xpm"
-# define FLOOR_PATH "./textures/floor.xpm"
-# define WALL_PATH "./textures/wall.xpm"
-# define EXIT_PATH "./textures/exit.xpm"
-# define COIN_PATH "./textures/coin.xpm"
+
+//double free texture not found use jadarmi
+
+# define PLAYER_PATH "../../textures/player.xpm"
+# define FLOOR_PATH "../../textures/floor.xpm"
+# define WALL_PATH "../../textures/wall.xpm"
+# define EXIT_PATH "../../textures/exit.xpm"
+# define COIN_PATH "../../textures/coin.xpm"
+
+
 # define ERROR_1 "Invalid Map : .ber format required\n"
 # define ERROR_2 "Failed to read map.\n"
 # define ERROR_3 "Failed to provide map.\n"
@@ -38,6 +39,19 @@
 # define ERROR_9 "Invalid Map : Map must have at least one collectible\n"
 # define ERROR_10 "Memory Error : \n"
 # define ERROR_11 "\n"
+
+
+typedef enum keys
+{
+	W_KEY = 0x0D,
+	S_KEY = 0x01,
+	A_KEY = 0x00,
+	D_KEY = 0x02,
+	ESC_KEY= 0x35,
+} keys;
+
+
+/* #################  Structs  ################# */
 
 typedef struct point
 {
@@ -65,9 +79,8 @@ typedef struct s_img_data
 
 	int		img_width;
 	int		img_height;
-	int		tile_lenght;
-	int		tile_width;
 
+	
 }			t_img_data;
 
 typedef struct game_info
@@ -85,30 +98,14 @@ typedef struct game_info
 	unsigned int 		c_count;
 	unsigned int		move_count;
 
-	struct s_img_data	textures;
+	t_img_data			textures;
 
 	t_point				e_pos;
 	t_point				p_pos;
 }						t_game_info;
 
-typedef enum keys
-{
-	W_KEY = 0x0D,
-	S_KEY = 0x01,
-	A_KEY = 0x00,
-	D_KEY = 0x02,
-	ESC_KEY= 0x35,
-} keys;
 
-char		*read_file(char *map_name, t_game_info *data);
-void		ft_errors_exit(char *error_macro);
-void		ft_errors(char *error_macro);
-int			valid_walls(char *line);
-bool		allowed_elements(t_counter *elements);
-bool		valid_element(char **map, int i , int j , t_counter *elements);
-t_game_info	*so_long(char **s1);
-void		flood_field(char **flooded_map, int x, int y);
-bool		valid_flow(char **map);
-bool		valid_map(char *buffered_map, t_game_info *game);
+
+
 
 #endif

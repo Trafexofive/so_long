@@ -4,11 +4,18 @@ NAME	:= so_long
 
 CFLAGS	:= -Wextra -Wall -Imlx
 #-Werror
-SRCS	:=  so_long.c parse.c	parse_map_utils.c error_utils.c 
+SRCS	:=  Mandatory/game/draw.c \
+            Mandatory/game/hooks.c \
+            Mandatory/parse/flood_field.c \
+            Mandatory/parse/init_textures.c \
+            Mandatory/parse/parse.c \
+            Mandatory/parse/parse_map_utils.c \
+            Mandatory/sl_utils.c \
+            Mandatory/so_long.c
 
 LIBFT_A := libft/libft.a
 
-HEADERS := so_long.h libft/libft.h
+HEADERS := Mandatory/inc/so_long.h Mandatory/inc/defines.h 
 
 OBJS	:= ${SRCS:.c=.o}
 
