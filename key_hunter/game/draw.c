@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:51:12 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 06:11:10 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 07:53:13 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,9 @@ void	switch_cases(t_game_info *game, int i, int j)
 
 void	draw_map(t_game_info *game)
 {
-	int	i;
-	int	j;
+	char	*tmp;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
@@ -51,6 +52,10 @@ void	draw_map(t_game_info *game)
 		i++;
 		j = 0;
 	}
+	tmp = ft_itoa(game->move_count);
+	mlx_string_put(game->mlx, game->mlx_win, 10, 10, 0x00FFFFFF, "moves :");
+	mlx_string_put(game->mlx, game->mlx_win, 90, 10, 0x00FFFFFF, tmp);
+	free(tmp);
 	mlx_put_image_to_window(game->mlx, game->mlx_win, 
 		game->textures.player_img, TILE * game->p_pos.x, TILE * game->p_pos.y);
 }
