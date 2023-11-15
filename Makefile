@@ -6,7 +6,7 @@
 #    By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/15 07:37:31 by mlamkadm          #+#    #+#              #
-#    Updated: 2023/11/15 07:38:31 by mlamkadm         ###   ########.fr        #
+#    Updated: 2023/11/15 07:46:07 by mlamkadm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,18 +16,18 @@ NAME	:= so_long
 
 CFLAGS	:= -Wextra -Wall -Werror -Imlx
 
-SRCS	:=  Mandatory/game/draw.c \
-            Mandatory/game/hooks.c \
-            Mandatory/parse/flood_field.c \
-            Mandatory/parse/init_textures.c \
-            Mandatory/parse/parse.c \
-            Mandatory/parse/parse_map_utils.c \
-            Mandatory/sl_utils.c \
-            Mandatory/so_long.c
+SRCS	:=  key_hunter/game/draw.c \
+            key_hunter/game/hooks.c \
+            key_hunter/parse/flood_field.c \
+            key_hunter/parse/init_textures.c \
+            key_hunter/parse/parse.c \
+            key_hunter/parse/parse_map_utils.c \
+            key_hunter/sl_utils.c \
+            key_hunter/so_long.c
 
 LIBFT_A := libft/libft.a
 
-HEADERS := Mandatory/inc/so_long.h	Mandatory/inc/defines.h	  \
+HEADERS := key_hunter/inc/so_long.h	key_hunter/inc/defines.h	  \
 
 OBJS	:= ${SRCS:.c=.o}
 
