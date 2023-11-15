@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:54:28 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 06:09:27 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 07:36:27 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ static bool	valid_map(char **map, t_game_info *game)
 	while (map[++i] && i < (game->width - 1))
 	{
 		if (map[i][0] != '1')
-			return (free(game), free2d(map), FALSE);
+			return (FALSE);
 		while (map[i][++j])
 			if (valid_element(map, i, j, &objects) == FALSE)
 				return (FALSE);
 		if (j != game->length || map[i][j - 1] != '1')
 			return (FALSE);
-		j = 1;
+		j = 0;
 	}
 	if (valid_walls (map[i], &j) == -1 || allowed_elements (&objects) == FALSE)
 		return (FALSE);

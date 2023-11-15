@@ -1,9 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/15 07:37:31 by mlamkadm          #+#    #+#              #
+#    Updated: 2023/11/15 07:38:31 by mlamkadm         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC := cc
 
 NAME	:= so_long
 
-CFLAGS	:= -Wextra -Wall -Imlx
-#-Werror
+CFLAGS	:= -Wextra -Wall -Werror -Imlx
+
 SRCS	:=  Mandatory/game/draw.c \
             Mandatory/game/hooks.c \
             Mandatory/parse/flood_field.c \
@@ -15,7 +27,7 @@ SRCS	:=  Mandatory/game/draw.c \
 
 LIBFT_A := libft/libft.a
 
-HEADERS := Mandatory/inc/so_long.h Mandatory/inc/defines.h 
+HEADERS := Mandatory/inc/so_long.h	Mandatory/inc/defines.h	  \
 
 OBJS	:= ${SRCS:.c=.o}
 
