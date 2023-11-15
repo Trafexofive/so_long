@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:55:21 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:02:48 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:04:38 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@
 # define ERROR_10 "Memory Error : \n"
 # define ERROR_11 "Error : Texture not found\n"
 
+/* #################  Key Hooks  ################# */
 
 typedef enum keys
 {
