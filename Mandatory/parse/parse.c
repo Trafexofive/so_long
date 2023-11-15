@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:54:28 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:49:57 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 06:09:27 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,38 +63,39 @@ static char	*read_file(t_game_info *game, int fd)
 	return (str);
 }
 
+void	init_struct(t_game_info *game, t_counter *objects, char **map)
+{
+	game->p_pos = objects->p_pos;
+	game->c_count = objects->collectibles;
+	game->e_pos = objects->e_pos;
+	game->map = map;
+}
+
 static bool	valid_map(char **map, t_game_info *game)
 {
 	int			i;
 	int			j;
 	t_counter	objects;
 
-	i = 1;
-	j = 1;
+	i = 0;
+	j = 0;
 	ft_bzero (&objects, sizeof(t_counter));
 	if (valid_walls (map[0], &game->length) == -1)
 		return (FALSE);
-	while (map[i] && i < (game->width - 1))
+	while (map[++i] && i < (game->width - 1))
 	{
 		if (map[i][0] != '1')
 			return (free(game), free2d(map), FALSE);
-		while (map[i][j])
-		{
+		while (map[i][++j])
 			if (valid_element(map, i, j, &objects) == FALSE)
 				return (FALSE);
-			j++;
-		}
 		if (j != game->length || map[i][j - 1] != '1')
 			return (FALSE);
 		j = 1;
-		i++;
 	}
 	if (valid_walls (map[i], &j) == -1 || allowed_elements (&objects) == FALSE)
 		return (FALSE);
-	game->p_pos = objects.p_pos;
-	game->c_count = objects.collectibles;
-	game->e_pos = objects.e_pos;
-	game->map = map;
+	init_struct(game, &objects, map);
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:52:25 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:54:49 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 06:10:21 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static	int	file_format(char *map_name)
 
 	map_name_len = ft_strlen(map_name);
 	if (strnstr(map_name, ".ber", map_name_len) == NULL)
-		return (ft_errors_exit(ERROR_1, 1), -1);
+		return (ft_exit(ERROR_1, 1), -1);
 	fd = open(map_name, O_RDONLY);
 	if (fd == -1)
-		return (ft_errors_exit(ERROR_1, 2), -1);
+		return (ft_exit(ERROR_1, 2), -1);
 	return (fd);
 }
 
@@ -45,7 +45,7 @@ static void	open_window(t_game_info *game)
 	{
 		free(game->map);
 		free(game);
-		ft_errors_exit("Invalid Map : Map is too big\n", 1);
+		ft_exit("Invalid Map : Map is too big\n", 1);
 	}
 }
 
@@ -63,5 +63,5 @@ int	main(int ac, char **av)
 		mlx_hook(game->mlx_win, 17, 0, free_all, game);
 		mlx_loop(game->mlx);
 	}
-	ft_errors_exit(ERROR_6, 1);
+	ft_exit(ERROR_6, 1);
 }

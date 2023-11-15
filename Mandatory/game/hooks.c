@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:01:01 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 06:01:00 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 06:11:42 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	player_move(t_game_info *game, int x, int y)
 	}
 	if (game->map[game->p_pos.y + y][game->p_pos.x + x] == 'E'
 		&& game->exit_allowed == TRUE)
-		free_exit(game);
+		free_all(game);
 	game->p_pos.x += x;
 	game->p_pos.y += y;
 	ft_putnbr_fd(game->move_count++, 1);
