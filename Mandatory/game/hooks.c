@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:01:01 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 04:26:07 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:19:58 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void	key_hook(int key, t_game_info *game)
 	else if ((key == D_KEY) &&  check_collision(game->map[game->p_pos.y][game->p_pos.x + 1], game))
 		player_move(game,+1,0);
 	else if (key == ESC_KEY)
-	{
-		free2d(game->map);
-		exit(1);
-	}
+		free_all(game);
 }
 
 int	check_collision(char c, t_game_info *game)

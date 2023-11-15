@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:52:13 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:13:59 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:18:44 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	free_all(t_game_info *game)
 	mlx_destroy_window(game->mlx, game->mlx_win);
 	free_textures(game);
 	free2d(game->map);
-	free(game->mlx);
 	free(game);
 	ft_errors_exit("Quiting\n", 1);
 	return (0);

@@ -6,16 +6,17 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 03:39:26 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 01:20:49 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:23:22 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-int	valid_walls(char *line , int *size)
+int	valid_walls(char *line, int *size)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (line[i] && line[i] == '1')
 		i++;
 	if (line[i] == '\0')
@@ -26,10 +27,11 @@ int	valid_walls(char *line , int *size)
 	return (-1);
 }
 
-bool	valid_element(char **map, int i , int j , t_counter *elements)
+bool	valid_element(char **map, int i, int j, t_counter *elements)
 {
-	char c = map[i][j];
+	char	c;
 
+	c = map[i][j];
 	if (c == '1' || c == '0' || c == 'C' || c == 'P' || c == 'E')
 	{
 		if (c == 'P')
@@ -40,20 +42,21 @@ bool	valid_element(char **map, int i , int j , t_counter *elements)
 		}
 		else if (c == 'C')
 			elements->collectibles++;
-		else if ( c == 'E')
+		else if (c == 'E')
 		{
 			elements->exit++;
-			elements->e_pos.x = i; // del
-			elements->e_pos.y = j; // del
+			elements->e_pos.x = i;
+			elements->e_pos.y = j;
 		}
 		return (TRUE);
 	}
 	return (FALSE);
 }
 
-bool allowed_elements(t_counter *elements)
+bool	allowed_elements(t_counter *elements)
 {
-	if (elements->player == 1 && elements->exit == 1 && elements->collectibles > 0)
-		return(TRUE);
-	return(FALSE);
+	if (elements->player == 1 && elements->exit == 1
+		&& elements->collectibles > 0)
+		return (TRUE);
+	return (FALSE);
 }
