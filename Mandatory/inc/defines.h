@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:55:21 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:06:18 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:13:06 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@
 # define ERROR_5 "Invalid Map : unable to find path to object\n"
 # define ERROR_6 "Invalid args : Too many arguments\n"
 # define ERROR_7 "Invalid Map : Map missing object\n"
-# define ERROR_8 "Invalid Map : Map has duplicated object\n"
-# define ERROR_9 "Invalid Map : Map must have at least one collectible\n"
+# define ERROR_8 "Invalid Map : newline in map\n"
+# define ERROR_9 "Invalid Map : Map Failed to parse\n"
 # define ERROR_10 "Memory Error : Memory Failed to allocate \n"
 # define ERROR_11 "Error : Texture not found\n"
+
 
 /* #################  Key Hooks  ################# */
 

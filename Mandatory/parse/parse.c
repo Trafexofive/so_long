@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:54:28 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:05:27 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:13:16 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char		*read_file(t_game_info *game , int fd)
 		if (line == NULL)
 			break;
 		if(*line == '\n')
-			return (free(line),free(game),close(fd),ft_errors_exit("Invalid Map : newline in map", 1),NULL);
+			return (free(line),free(game),close(fd),ft_errors_exit(ERROR_8, 1),NULL);
 		tmp2 = strjoinem(tmp2, line);
 		free(line);
 		line = NULL;
@@ -110,17 +110,17 @@ t_game_info	*parse(int fd)
 	close (fd);
 	flooded_map = ft_split(map, '\n');
 	if (!flooded_map)
-	    return (free(game), ft_errors_exit(, 1), NULL);
+	    return (free(game), ft_errors_exit(ERROR_10, 1), NULL);
 	if (valid_map(flooded_map, game) == FALSE)
-		return (free2d(flooded_map),free(map),free(game), ft_errors_exit("Map Failed To parse", 1),NULL);
+		return (free2d(flooded_map),free(map),free(game), ft_errors_exit(ERROR_9, 1),NULL);
 	flooded_map = NULL;
 	flooded_map = ft_split(map,'\n');
 	free(map);
 	if (!flooded_map)
-	    return (free2d(game->map),free(game), ft_errors_exit("Memory Failed to allocate", 1),NULL);
+	    return (free2d(game->map),free(game), ft_errors_exit(ERROR_10, 1),NULL);
 	flood_field(flooded_map, game->p_pos.x, game->p_pos.y);
 	if (valid_flow(flooded_map) == FALSE)
-		return(free2d(flooded_map),free2d(game->map),free(game),ft_errors_exit("Invalid Map : No path to object", 1),NULL); // free struct elemts
+		return(free2d(flooded_map),free2d(game->map),free(game),ft_errors_exit(ERROR_5, 1),NULL);
 	return (free2d(flooded_map), game);
 }
 

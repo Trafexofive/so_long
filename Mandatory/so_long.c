@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:52:25 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 05:03:07 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 05:16:04 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int main(int ac, char **av)
 		mlx_hook(game->mlx_win, 17, 0, free_all, game);
 		atexit(f);
 		mlx_loop(game->mlx);
-
 	}
 	ft_errors_exit(ERROR_6 , 1);
 
