@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:55:21 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 07:39:29 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 08:07:16 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define ERROR_9 "Invalid Map : Map Failed to parse\n"
 # define ERROR_10 "Memory Error : Memory Failed to allocate \n"
 # define ERROR_11 "Error : Texture not found\n"
+# define ERROR_12 "Error : Window size too big\n"
 
 /* #################    Key Hooks    ################# */
 

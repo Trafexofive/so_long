@@ -6,7 +6,7 @@
 /*   By: mlamkadm <mlamkadm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 23:52:25 by mlamkadm          #+#    #+#             */
-/*   Updated: 2023/11/15 06:10:21 by mlamkadm         ###   ########.fr       */
+/*   Updated: 2023/11/15 08:11:21 by mlamkadm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	open_window(t_game_info *game)
 	w = 0;
 	h = game->width * TILE;
 	w = game->length * TILE;
-	if (w < 2980 || h < 1550)
+	if (h < 1450 && w < 2880)
 	{
 		game->mlx = mlx_init();
 		game->mlx_win = mlx_new_window(game->mlx, w, h, "so_long");
@@ -45,7 +45,7 @@ static void	open_window(t_game_info *game)
 	{
 		free(game->map);
 		free(game);
-		ft_exit("Invalid Map : Map is too big\n", 1);
+		ft_exit(ERROR_12, 1);
 	}
 }
 
